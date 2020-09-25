@@ -11,7 +11,7 @@ class ScreenWidget extends StatelessWidget {
         appBar: AppBar(
           title: const Text('GridView Widget'),
         ),
-        body: GridViewBuilderWidget(),
+        body: GridViewCustomWidget(),
       ),
     );
   }
@@ -61,15 +61,14 @@ class GridViewWidget extends StatelessWidget {
 class GridViewBuilderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var gridView = GridView.builder(
-        itemCount: 10,
+    return GridView.builder(
+        // itemCount: 10,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
         itemBuilder: (context, index) {
           return TextWidget(text: '$index');
         });
-    return gridView;
   }
 }
 
@@ -90,6 +89,47 @@ class GridViewCountWidget extends StatelessWidget {
         TextWidget(text: "9"),
         TextWidget(text: "10"),
       ],
+    );
+  }
+}
+
+class GridViewExtentWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final queryData = MediaQuery.of(context);
+    print(queryData.size);
+
+    return Container(
+        width: 300,
+        color: Colors.greenAccent,
+        child: GridView.extent(
+          maxCrossAxisExtent: 90,
+          children: [
+            TextWidget(text: "1"),
+            TextWidget(text: "2"),
+            TextWidget(text: "3"),
+            TextWidget(text: "4"),
+            TextWidget(text: "5"),
+          ],
+        ));
+  }
+}
+
+class GridViewCustomWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GridView.custom(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+      ),
+      // childrenDelegate: SliverChildListDelegate([
+      //   TextWidget(text: "1"),
+      //   TextWidget(text: "2"),
+      //   TextWidget(text: "3"),
+      // ]));
+      childrenDelegate: SliverChildBuilderDelegate((context, index) {
+        return TextWidget(text: '$index');
+      }),
     );
   }
 }
