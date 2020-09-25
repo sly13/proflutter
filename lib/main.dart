@@ -9,9 +9,9 @@ class ScreenWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('GridView Widget'),
+          title: const Text('PageView Widget'),
         ),
-        body: GridViewBuilderWidget(),
+        body: PageViewCustomWidget(),
       ),
     );
   }
@@ -35,61 +35,85 @@ class TextWidget extends StatelessWidget {
   }
 }
 
-class GridViewWidget extends StatelessWidget {
+class PageViewWidget extends StatelessWidget {
+  final PageController controller = PageController(initialPage: 0);
+
   @override
   Widget build(BuildContext context) {
-    return GridView(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-      ),
+    return PageView(
+      scrollDirection: Axis.vertical,
+      // pageSnapping: false,
+      physics: BouncingScrollPhysics(),
+      // physics: ClampingScrollPhysics(),
+      controller: controller,
+      onPageChanged: (number) {
+        print("Page number $number");
+      },
       children: <Widget>[
-        TextWidget(text: "1"),
-        TextWidget(text: "2"),
-        TextWidget(text: "3"),
-        TextWidget(text: "4"),
-        TextWidget(text: "5"),
-        TextWidget(text: "6"),
-        TextWidget(text: "7"),
-        TextWidget(text: "8"),
-        TextWidget(text: "9"),
-        TextWidget(text: "10"),
+        Container(
+          color: Colors.red,
+          child: Center(
+            child: Text('Stop!'),
+          ),
+        ),
+        Container(
+          color: Colors.orange,
+          child: Center(
+            child: Text('Ready?'),
+          ),
+        ),
+        Container(
+          color: Colors.green,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Go!',
+                style: TextStyle(fontSize: 40),
+              ),
+              RaisedButton(
+                  color: Colors.blue,
+                  child: new Text(
+                    "Reload",
+                  ),
+                  onPressed: () {
+                    // controller.jumpToPage(2);
+                    controller.animateToPage(0,
+                        duration: Duration(seconds: 1),
+                        curve: Curves.easeInBack);
+                  })
+            ],
+          ),
+        ),
       ],
     );
   }
 }
 
-class GridViewBuilderWidget extends StatelessWidget {
+class PageViewBuilderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var gridView = GridView.builder(
-        itemCount: 10,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-        ),
-        itemBuilder: (context, index) {
-          return TextWidget(text: '$index');
-        });
-    return gridView;
+    return PageView.builder(
+      itemCount: 5,
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
+          alignment: Alignment.center,
+          child: Text('$index'),
+        );
+      },
+    );
   }
 }
 
-class GridViewCountWidget extends StatelessWidget {
+class PageViewCustomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 2,
-      children: <Widget>[
-        TextWidget(text: "1"),
-        TextWidget(text: "2"),
-        TextWidget(text: "3"),
-        TextWidget(text: "4"),
-        TextWidget(text: "5"),
-        TextWidget(text: "6"),
-        TextWidget(text: "7"),
-        TextWidget(text: "8"),
-        TextWidget(text: "9"),
-        TextWidget(text: "10"),
-      ],
+    return PageView.custom(
+      childrenDelegate: SliverChildListDelegate([
+        Text('1'),
+        Text('2'),
+        Text('3'),
+      ]),
     );
   }
 }
