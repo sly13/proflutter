@@ -43,12 +43,12 @@ class PageViewWidget extends StatelessWidget {
     return PageView(
       scrollDirection: Axis.vertical,
       // pageSnapping: false,
-      physics: BouncingScrollPhysics(),
-      // physics: ClampingScrollPhysics(),
+      // physics: BouncingScrollPhysics(),
+      // physics: NeverScrollableScrollPhysics(),
       controller: controller,
-      onPageChanged: (number) {
-        print("Page number $number");
-      },
+      // onPageChanged: (number) {
+      //   print("Page number $number");
+      // },
       children: <Widget>[
         Container(
           color: Colors.red,
@@ -72,12 +72,10 @@ class PageViewWidget extends StatelessWidget {
                 style: TextStyle(fontSize: 40),
               ),
               RaisedButton(
+                  child: Text('Reload'),
                   color: Colors.blue,
-                  child: new Text(
-                    "Reload",
-                  ),
                   onPressed: () {
-                    // controller.jumpToPage(2);
+                    // controller.jumpToPage(0);
                     controller.animateToPage(0,
                         duration: Duration(seconds: 1),
                         curve: Curves.easeInBack);
@@ -94,9 +92,10 @@ class PageViewBuilderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView.builder(
-      itemCount: 5,
+      // itemCount: 5,
       itemBuilder: (BuildContext context, int index) {
         return Container(
+          color: index % 2 == 0 ? Colors.red : Colors.greenAccent,
           alignment: Alignment.center,
           child: Text('$index'),
         );
