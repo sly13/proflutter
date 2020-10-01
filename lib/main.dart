@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() => runApp(ScreenWidget());
 
@@ -7,43 +7,42 @@ class ScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // theme: ThemeData(fontFamily: 'ShadowsInto'),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Import Fonts'),
-        ),
-        body: Container(
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Roboto font',
-                style: TextStyle(
-                  // fontFamily: 'Roboto',
-                  // fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 30,
-                ),
-              ),
-              Text(
-                'ShadowsInto font',
-                style: TextStyle(fontSize: 30, fontFamily: 'ShadowsInto'),
-              ),
-              Text(
-                'Google font',
-                style: GoogleFonts.lato(
-                  textStyle: TextStyle(
-                    fontStyle: FontStyle.italic,
-                    fontSize: 30,
-                  ),
-                ),
-              ),
-            ],
+          appBar: AppBar(
+            title: const Text('Import Images'),
           ),
-        ),
-      ),
+          body: ImageWidget()),
+    );
+  }
+}
+
+class ImageWidget extends StatelessWidget {
+  const ImageWidget({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final String assetNamePath = 'assets/images/bali.jpg';
+    final String assetNameSvg = 'assets/subscribe.svg';
+    final String assetNameUrl = 'https://fffuuu.net/Upload/Images/ved_tak_.png';
+
+    // AssetImage imageFromAssetImage = AssetImage(assetNamePath);
+    // Image imageFromAsset = Image.asset(assetNameSvg, fit: BoxFit.cover);
+
+    // Image imageFromNetwork = Image.network(assetNameUrl);
+
+    // Image changedImage = Image(
+    //   image: imageFromNetwork.image,
+    //   color: Colors.green,
+    //   colorBlendMode: BlendMode.color,
+    // );
+
+    SvgPicture imageFromAssetSvg =
+        SvgPicture.asset(assetNameSvg, fit: BoxFit.cover);
+
+    return Container(
+      constraints: BoxConstraints.expand(height: double.infinity),
+      child: imageFromAssetSvg,
     );
   }
 }
