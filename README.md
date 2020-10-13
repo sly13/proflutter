@@ -1,4 +1,4 @@
-# desktop_app
+# theme_app
 
 A new Flutter project.
 
