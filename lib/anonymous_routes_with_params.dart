@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:tmp/utils/theme.dart';
 
-class AnonymousRoutes extends StatelessWidget {
+class Product {
+  final String imageUrl;
+  final String name;
+  final String description;
+
+  Product({this.imageUrl, this.name, this.description});
+}
+
+class AnonymousRoutesWithParams extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,7 +24,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Anonymous Routes'),
+        title: Text('Anonymous Routes With Params'),
       ),
       backgroundColor: Colors.white,
       body: Center(
@@ -30,10 +38,17 @@ class HomeScreen extends StatelessWidget {
             RaisedButton(
               child: Text('Подробнее'),
               onPressed: () {
+                Product product = Product(
+                  imageUrl:
+                      'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp13touch-space-select-202005?wid=904&hei=840&fmt=jpeg&qlt=80&op_usm=0.5,0.5&.v=1587460552755',
+                  name: 'Macbook Pro 13, 2020',
+                  description:
+                      'Intel Core i5,Turbo Boost up to 3.8GHz, 32GB, 1TB SSD',
+                );
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) {
-                    return DetailScreen();
+                    return DetailScreen(product: product);
                   }),
                 );
               },
@@ -46,6 +61,9 @@ class HomeScreen extends StatelessWidget {
 }
 
 class DetailScreen extends StatelessWidget {
+  final Product product;
+  DetailScreen({this.product});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,14 +77,12 @@ class DetailScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Image.network(
-                    'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp13touch-space-select-202005?wid=904&hei=840&fmt=jpeg&qlt=80&op_usm=0.5,0.5&.v=1587460552755',
+                    product.imageUrl,
                     width: 300,
                   ),
                   ListTile(
-                    // leading: Icon(Icons.album),
-                    title: Text('Macbook Pro 13, 2020'),
-                    subtitle: Text(
-                        'Intel Core i5,Turbo Boost up to 3.8GHz, 32GB, 1TB SSD'),
+                    title: Text(product.name),
+                    subtitle: Text(product.description),
                   ),
                 ],
               ),

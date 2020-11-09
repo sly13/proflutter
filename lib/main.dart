@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import './anonymous_routes.dart';
+import 'onGenerateRoute.dart';
 
 void main() {
-  runApp(AnonymousRoutes());
-  // runApp(NamedRoutes());
+  // runApp(NamedRoutesWithParams());
+  // runApp(AnonymousRoutesWithParams());
+  runApp(OnGenerateRoute());
 }
