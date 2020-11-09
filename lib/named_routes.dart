@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:tmp/utils/theme.dart';
+
+import './utils/theme.dart';
 
 class NamedRoutes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: basicTheme(),
-      // home: HomeScreen(),
-      // initialRoute: '/',
-      initialRoute: '/details',
       routes: {
         '/': (context) => HomeScreen(),
         '/details': (context) => DetailScreen(),

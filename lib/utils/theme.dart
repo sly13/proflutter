@@ -6,5 +6,4 @@ ThemeData basicTheme() => ThemeData(
         buttonColor: Colors.blueAccent,
         textTheme: ButtonTextTheme.accent,
       ),
-      // scaffoldBackgroundColor: Colors.grey,
     );
