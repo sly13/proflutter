@@ -13,5 +13,8 @@
 - [Добавление картинок](https://youtu.be/KfMiaJLHnWY)
 - [Создание и релиз десктопного приложения](https://youtu.be/0zjwEZykbZw)
 - [Создание собственной темы приложения](https://youtu.be/tlS0tMb-0AE)
+- [Виджет Stack,  IndexedStack, Positioned](https://youtu.be/VR1D-HQDi_o)
+- [Создание веб-приложения. Знакомство с Firebase + Github Actions](https://youtu.be/cOkkgMIU0hs)
+- [Маршрутизация и навигация. Виджет Navigator #1](https://youtu.be/m5QQzfkvqA0)
 
 Все видео на youtube канале: https://www.youtube.com/channel/UCkIIBpXLZJLNaQRNuQ2Mwng
