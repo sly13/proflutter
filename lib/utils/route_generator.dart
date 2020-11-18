@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tmp/onGenerateRoute.dart';
+import '../onGenerateRoute.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {

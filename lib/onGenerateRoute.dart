@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tmp/utils/route_generator.dart';
-import 'package:tmp/utils/theme.dart';
+
+import './utils/theme.dart';
 
 class OnGenerateRoute extends StatelessWidget {
   @override

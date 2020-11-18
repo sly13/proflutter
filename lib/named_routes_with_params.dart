@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tmp/utils/theme.dart';
+import './utils/theme.dart';
 
 class NamedRoutesWithParams extends StatelessWidget {
   @override
